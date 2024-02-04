@@ -1,21 +1,29 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
 import acm.program.ConsoleProgram;
 
-public class Problem60 extends ConsoleProgram {
-	public void run() {
-		int m = readInt("Enter m : ");
-		int n = readInt("Enter n : ");
-		int[] nums = new int [n];
-		for(int i =0;i < n ;i++){
-			nums[i] = readInt("/" );
-			
-		}
-		for(int i =0; i < nums.length ; i++){
-			for (int j = i +1; j < nums.length -1; j++){
-				if(m - nums[i] == nums[j]){
-					println(nums[i] + "," + nums[j]);
-				}
+public class Problem60 extends ConsoleProgram{
+	int n;
+	public void run(){
+		ArrayList<Integer> arr = new ArrayList<>();
+		ArrayList<Integer> result = new ArrayList<>();
+		
+		while(true){
+			if(n == -1){
+				break;
 			}
+			n = readInt();
+			arr.add(Integer.valueOf(n));
 		}
 		
+		if(arr.size() != 1){
+			for(int i = 2 ; i <= arr.size();i++){
+			result.add(arr.get(arr.size()-i));
+		}
+		}
+		
+		println(result);
 	}
+
 }

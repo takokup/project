@@ -1,35 +1,31 @@
 import acm.program.ConsoleProgram;
 
-public class Problem59 extends ConsoleProgram{
-	public void run(){
-		
-	}
-	
-	private boolean submatrix (int[][]matrix){
+public class Problem59 extends ConsoleProgram {
 
-		int maxArea = 0 ;
-		for ( int r1 = 0 ; r1 < matrix.length;r1++){
-			for ( int r2 = r1 ; r2 < matrix.length;r2++){
-				for ( int c1 = 0 ; c1 < matrix[0].length;c1++){
-					for ( int c2 = c1 ; c2 < matrix[0].length;c2++){
-						if(isFilled(matrix,r1,r2,c1,c2)){
-							
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	private boolean isFilled(int[][]matrix,int r1,int c1,int r2,int c2){
-		for(int r = r1;r<=r2;r++){
-			for(int c = c1; c <= c2 ; c++){
-				if(matrix[r][c] == 0){
-					return false;
-				}
-			}
-		}
-		return true;
-	}
+    public void run() {
+        int[][] m = new int[5][8]; 
 
+        int maxLen = 0;
+
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[0].length; j++) {
+                if (m[i][j] == 1) {
+                    int x = i;
+                    while (x < m.length && m[x][j] == 1) {
+                        int r = 0;
+                        while (j + r < m[0].length && m[i][j + r] == 1 && m[x][j + r] == 1) {
+                            r++;
+                        }
+                        int width = j + r - i + 1;
+                        int height = x - i + 1;
+                        int area = width * height;
+                       maxLen = Math.max(maxLen, area);
+                        x++;
+                    }
+                }
+            }
+        }
+
+        println(maxLen);
+    }
 }
